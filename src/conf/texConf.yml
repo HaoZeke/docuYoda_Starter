@@ -1,0 +1,6 @@
+# TeX Stuff
+header-includes:
+    - \numberwithin{figure}{section}
+    - \numberwithin{equation}{section}
+    - \numberwithin{table}{section}
+    - \usepackage{FiraSans}

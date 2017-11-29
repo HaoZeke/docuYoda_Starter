@@ -8,14 +8,19 @@ import insert from 'gulp-insert';
 import { exec } from 'child_process';
 
 const paths = {
-  content: {
-    src: 'src/md',
-    conf: 'src/conf',
-    tex: 'src/tex'
+  contentFrom: {
+    src: 'src/md/',
+    conf: 'src/conf/',
+    tex: 'src/tex/',
+  },
+  outputTo: {
+    tex: 'src/tex/',
+    pdf: 'sap/pdf/',
+    doc: 'sap/doc/'
   },
   images: {
-    src: 'src/img',
-    dest: 'sap'
+    src: 'src/img/',
+    dest: 'sap/'
   },
   styles: {
     src: 'src/assets/styles/**/*.scss',
@@ -25,7 +30,7 @@ const paths = {
     src: 'src/assets/js',
     dest: 'sap/js/'
   },
-  watchfor: {
+  watchFor: {
     md: 'src/md/**/*.md',
     conf: 'src/conf/**/*.yml',
     filters: 'src/filters/**/*.py',
@@ -36,3 +41,56 @@ const paths = {
     images: 'src/img/**/*.{jpg,jpeg,png}'
   }
 }
+
+const pandocOpt = {
+  tex: {
+    outputDir: paths.outputTo.tex,
+    inputFileType: 'md',
+    outputFileType: 'latex',
+    args: [
+    '--from',
+    'markdown+smart',
+    '--standalone',
+    '--highlight-style',
+    'zenburn',
+    // '--template' + paths.docs.templates + 'eisvogel.tex',
+    '--listings',
+    '--filter',
+    'pandoc-citeproc'
+    ]
+  },
+  pdf: {
+    outputDir: paths.outputTo.pdf,
+    inputFileType: '.md',
+    outputFileType: '.pdf',
+    args: [
+    '--from',
+    'markdown+smart',
+    '--standalone',
+    '--highlight-style',
+    'zenburn',
+    // '--template' + paths.docs.templates + 'eisvogel.tex',
+    '--listings',
+    '--filter',
+    'pandoc-citeproc'
+    ]
+  }
+}
+
+export function tex() {
+  return gulp.src(paths.watchFor.md)
+  // Check if new
+    .pipe(newer(paths.outputTo.tex))
+  // Handle the metadata per file (bottom to top)
+    // .pipe(insert.prepend('---'))
+    // .pipe(gap.prependFile([
+      // paths.contentFrom.conf + 'texConf.yml',
+      // paths.contentFrom.conf + 'commonConf.yml'
+      // ]))
+    // .pipe(insert.prepend('---'))
+  // Actually call pandoc on each new file (metadata+file)
+    .pipe(gpandoc(pandocOpt.tex))
+    .pipe(gulp.dest(paths.outputTo.tex))
+};
+
+export default gulp.series(tex);

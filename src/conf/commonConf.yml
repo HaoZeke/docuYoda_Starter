@@ -1,0 +1,11 @@
+author:
+- Rohit Goswami
+title: docuYoda
+subtitle: Pandoc Papers for Turtles
+#institute: George Mason University
+fontsize: 12pt
+date: 2017-11-5
+subject: "docuYoda"
+tags: [Markdown, Example]
+# Citations
+bibliography: "src/refs.bib"
