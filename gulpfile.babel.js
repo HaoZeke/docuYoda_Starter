@@ -10,9 +10,6 @@ import rename from 'gulp-rename';
 import exec from 'gulp-exec';
 import gif from 'gulp-if';
 import del from 'del';
-import yargs from 'yargs-parser';
-
-var isProduction = yargs.env === 'production';
 
 // Paths for futureproof directory changes
 const paths = {
@@ -20,17 +17,18 @@ const paths = {
     src: 'src/md/',
     conf: 'src/conf/',
     tex: 'src/tex/',
-    templates: 'src/templates/'
+    templates: 'src/templates/',
+    images: 'src/img/'
   },
   outputTo: {
     root: 'sap/',
     pdf: 'sap/pdf/',
     doc: 'sap/doc/',
-    tex: 'src/tex/'
-  },
-  images: {
-    src: 'src/img/',
-    dest: 'sap/'
+    tex: 'src/tex/',
+    images: {
+      pdf: 'sap/pdf/img/',
+      dest: 'sap/img/'
+    }
   },
   styles: {
     src: 'src/assets/styles/**/*.scss',
@@ -65,10 +63,14 @@ const pandocOpt = {
     '--highlight-style',
     'zenburn',
     '--template',
-    paths.contentFrom.templates + 'eisvogel.tex',
+    paths.contentFrom.templates + 'classicThesis.tex',
     '--listings',
     '--filter',
-    'pandoc-citeproc'
+    'pandoc-citeproc',
+    '--filter',
+    'pandoc-eqnos',
+    '--filter',
+    'pandoc-fignos'
     ]
   },
 
@@ -123,9 +125,8 @@ export function glatexmk() {
   }
 
   return gulp.src(paths.watchFor.tex)
-    .pipe(exec('latexmk <%= file.path %> -r <%= options.myConf %>', options))
+    .pipe(exec('latexmk -silent -r <%= options.myConf %> <%= file.path %>', options))
     .pipe(exec.reporter(reportOptions))
-    .pipe(gif(isProduction, latexmkClean()))
 }
 
 // Freshen the files, keep .tex files
@@ -142,10 +143,9 @@ export function latexmkClean() {
   }
 
   return gulp.src(paths.watchFor.tex)
-    .pipe(exec('latexmk -c <%= file.path %> -r <%= options.myConf %>', options))
+    .pipe(exec('latexmk -c -silent -r <%= options.myConf %> <%= file.path %>', options))
     .pipe(exec.reporter(reportOptions))
 }
-
 
 // Deletes Every Output
 export function clobber() {
@@ -155,7 +155,31 @@ export function clobber() {
     ])
 }
 
+export function images() {
+  return gulp.src(paths.watchFor.images)
+    .pipe(newer(paths.outputTo.images.pdf))  // pass through newer images only
+    .pipe(imagemin({
+      interlaced: true,
+      progressive: true,
+      optimizationLevel: 5,
+      svgoPlugins: [{removeViewBox: true}]
+    }))
+    .pipe(gulp.dest(paths.outputTo.images.pdf))
+};
+
+
+export function watch() {
+  watcher([
+    paths.watchFor.md,
+    paths.watchFor.conf,
+    paths.watchFor.latexmkConf,
+    paths.watchFor.images,
+    paths.watchFor.filters
+    ],
+    gulp.series('latexmk-pdf'));
+};
+
 // Produces pdfs the latexmk way
-gulp.task('latexmk-pdf', gulp.series(tex, glatexmk));
+gulp.task('latexmk-pdf', gulp.series(tex, images, glatexmk));
 
 export default gulp.series('latexmk-pdf');
