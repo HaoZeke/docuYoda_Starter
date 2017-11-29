@@ -2,9 +2,13 @@ header-includes:
     - \numberwithin{figure}{section}
     - \numberwithin{equation}{section}
     - \numberwithin{table}{section}
-    - \usepackage{FiraSans}
+    - \usepackage{ebgaramond}
 titlepage: true
 titlepage-color: 06386e
 titlepage-text-color: ffffff
 titlepage-rule-color: ffffff
 titlepage-rule-height: 1
+biblatex: true
+lof: true
+lot: true
+toc: true

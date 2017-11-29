@@ -125,7 +125,7 @@ export function glatexmk() {
   }
 
   return gulp.src(paths.watchFor.tex)
-    .pipe(exec('latexmk -silent -r <%= options.myConf %> <%= file.path %>', options))
+    .pipe(exec('latexmk -silent -f -r <%= options.myConf %> <%= file.path %>', options))
     .pipe(exec.reporter(reportOptions))
 }
 
@@ -143,7 +143,7 @@ export function latexmkClean() {
   }
 
   return gulp.src(paths.watchFor.tex)
-    .pipe(exec('latexmk -c -silent -r <%= options.myConf %> <%= file.path %>', options))
+    .pipe(exec('latexmk -c -f -silent -r <%= options.myConf %> <%= file.path %>', options))
     .pipe(exec.reporter(reportOptions))
 }
 
@@ -180,6 +180,6 @@ export function watch() {
 };
 
 // Produces pdfs the latexmk way
-gulp.task('latexmk-pdf', gulp.series(tex, images, glatexmk));
+gulp.task('latexmk-pdf', gulp.series('tex', 'images', 'glatexmk'));
 
-export default gulp.series('latexmk-pdf');
+export default gulp.series('latexmk-pdf','latexmkClean');
