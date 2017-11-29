@@ -8,8 +8,11 @@ import gap from 'gulp-append-prepend';
 import insert from 'gulp-insert';
 import rename from 'gulp-rename';
 import exec from 'gulp-exec';
+import gif from 'gulp-if';
 import del from 'del';
+import yargs from 'yargs-parser';
 
+var isProduction = yargs.env === 'production';
 
 // Paths for futureproof directory changes
 const paths = {
@@ -122,6 +125,7 @@ export function glatexmk() {
   return gulp.src(paths.watchFor.tex)
     .pipe(exec('latexmk <%= file.path %> -r <%= options.myConf %>', options))
     .pipe(exec.reporter(reportOptions))
+    .pipe(gif(isProduction, latexmkClean()))
 }
 
 // Freshen the files, keep .tex files
@@ -153,8 +157,5 @@ export function clobber() {
 
 // Produces pdfs the latexmk way
 gulp.task('latexmk-pdf', gulp.series(tex, glatexmk));
-
-// Produces pdfs the latexmk way
-gulp.task('latexmk-pdfc', gulp.series(tex, glatexmk, latexmkClean));
 
 export default gulp.series('latexmk-pdf');
