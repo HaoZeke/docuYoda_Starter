@@ -2,9 +2,11 @@ import gulp from 'gulp';
 import watcher from 'gulp-watch';
 import newer from 'gulp-newer';
 import imagemin from 'gulp-imagemin';
-import gpandoc from 'gulp-pandoc-writer'; // The fork of gpandoc which works with binary outputs
+import gpandocWriter from 'gulp-pandoc-writer'; // The fork of gpandoc which works with binary outputs
+import gpandoc from 'gulp-pandoc'; // The one which works best for non binary files
 import gap from 'gulp-append-prepend';
 import insert from 'gulp-insert';
+import rename from 'gulp-rename';
 import { exec } from 'child_process';
 
 const paths = {
@@ -12,6 +14,7 @@ const paths = {
     src: 'src/md/',
     conf: 'src/conf/',
     tex: 'src/tex/',
+    templates: 'src/templates/'
   },
   outputTo: {
     tex: 'src/tex/',
@@ -44,32 +47,33 @@ const paths = {
 
 const pandocOpt = {
   tex: {
-    outputDir: paths.outputTo.tex,
-    inputFileType: 'md',
-    outputFileType: 'latex',
+    from: 'markdown',
+    to: 'latex',
+    ext: '.tex',
     args: [
-    '--from',
-    'markdown+smart',
     '--standalone',
     '--highlight-style',
     'zenburn',
-    // '--template' + paths.docs.templates + 'eisvogel.tex',
+    '--template',
+    paths.contentFrom.templates + 'eisvogel.tex',
     '--listings',
     '--filter',
     'pandoc-citeproc'
     ]
   },
+
   pdf: {
     outputDir: paths.outputTo.pdf,
     inputFileType: '.md',
     outputFileType: '.pdf',
     args: [
     '--from',
-    'markdown+smart',
+    'markdown',
     '--standalone',
     '--highlight-style',
     'zenburn',
-    // '--template' + paths.docs.templates + 'eisvogel.tex',
+    '--template',
+    paths.contentFrom.templates + 'eisvogel.tex',
     '--listings',
     '--filter',
     'pandoc-citeproc'
@@ -82,12 +86,12 @@ export function tex() {
   // Check if new
     .pipe(newer(paths.outputTo.tex))
   // Handle the metadata per file (bottom to top)
-    // .pipe(insert.prepend('---'))
-    // .pipe(gap.prependFile([
-      // paths.contentFrom.conf + 'texConf.yml',
-      // paths.contentFrom.conf + 'commonConf.yml'
-      // ]))
-    // .pipe(insert.prepend('---'))
+    .pipe(insert.prepend('---\n'))
+    .pipe(gap.prependFile([
+      paths.contentFrom.conf + 'texConf.yml',
+      paths.contentFrom.conf + 'commonConf.yml'
+      ]))
+    .pipe(insert.prepend('---\n'))
   // Actually call pandoc on each new file (metadata+file)
     .pipe(gpandoc(pandocOpt.tex))
     .pipe(gulp.dest(paths.outputTo.tex))
