@@ -2,10 +2,10 @@
 
 > Copyright (C) 2017  Rohit Goswami <rohit1995@mail.ru>
 
-![](src/img/turtle.png "Pandoc for turtles")
+![](src/img/turtle.png "Pandoc Papers for turtles")
 
 This is the template for docuYoda rapid protoyping for academic documents.
-The template comes with *batteries included* as it includes the dependencies for complete offline use. 
+The template comes with **batteries included** as it includes the dependencies for complete offline use. 
 
 Both pandoc style citations and traditional TeX citations are enabled, however keep in mind that TeX citations will not display in non-TeX files.
 
@@ -13,13 +13,25 @@ Read about the project at it's source [here](https://www.github.com/HaoZeke/docu
 
 For creating presentations, refer to the sibling project, [zenYoda](http://zenyoda.surge.sh/) and it's [starter template](http://zenyodasap.surge.sh/).
 
+## Folder Structure
+The configuration for each file is done by `yaml` files in `src/config`.
+The gulp tasks exposed will handle appending these configurations in the form of frontmatter.
+
+**DO NOT** add any frontmatter in the `.md` files.
+Instead add global frontmatter to the `src/config/commonConf.yml` file.
+
+**DO NOT** add frontmatter delimiters to **ANY** of the configuration `yml` files either, the gulp tasks will handle those.
+
+## Gulp Tasks
+
+
 ## Usage
 
 ### PaaS
 Simply fork the repo.
 
 
-Edit the slides.md file in src/md/slides/ and also slideConf.yml in src/ using any of the following:
+Edit the content slides in `src/md/*.md`, along with references in `src/refs.bib` and also the appropriate configuration files in `src/config/` using any of the following:
 
 - Github Native Editor
 - [StackEdit](https://stackedit.io)
