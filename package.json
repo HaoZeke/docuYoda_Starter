@@ -1,0 +1,13 @@
+{
+  "name": "docuYodaStarter",
+  "version": "1.0.0",
+  "description": "A starter template for the docuYoda academic publishing system.",
+  "main": "gulpfile.babel.js",
+  "repository": "https://github.com/HaoZeke/docuYoda_Starter",
+  "author": "Rohit Goswami <rohit1995@mail.ru>",
+  "license": "GPL-3.0",
+  "private": false,
+  "dependencies": {
+    "babel-preset-env": "^1.6.1"
+  }
+}
