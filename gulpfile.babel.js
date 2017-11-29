@@ -8,7 +8,10 @@ import gap from 'gulp-append-prepend';
 import insert from 'gulp-insert';
 import rename from 'gulp-rename';
 import exec from 'gulp-exec';
+import del from 'del';
 
+
+// Paths for futureproof directory changes
 const paths = {
   contentFrom: {
     src: 'src/md/',
@@ -17,9 +20,10 @@ const paths = {
     templates: 'src/templates/'
   },
   outputTo: {
-    tex: 'src/tex/',
+    root: 'sap/',
     pdf: 'sap/pdf/',
-    doc: 'sap/doc/'
+    doc: 'sap/doc/',
+    tex: 'src/tex/'
   },
   images: {
     src: 'src/img/',
@@ -46,6 +50,8 @@ const paths = {
   }
 }
 
+
+// Options for every kind of pandoc and output
 const pandocOpt = {
   tex: {
     from: 'markdown',
@@ -82,6 +88,7 @@ const pandocOpt = {
   }
 }
 
+// Produce tex files
 export function tex() {
   return gulp.src(paths.watchFor.md)
   // Check if new
@@ -98,12 +105,13 @@ export function tex() {
     .pipe(gulp.dest(paths.outputTo.tex))
 };
 
+
+// Runs latexmk via gulp on each file
 export function glatexmk() {
   var options = {
     continueOnError: false, // default = false, true means don't emit error event 
     pipeStdout: false, // default = false, true means stdout is written to file.contents 
-    outDir: paths.outputTo.pdf, // content passed to gutil.template()
-    myConf: paths.watchFor.latexmkConf
+    myConf: paths.watchFor.latexmkConf // content passed to gutil.template()
   };
   var reportOptions = {
     err: true, // default = true, false means don't write err 
@@ -114,8 +122,39 @@ export function glatexmk() {
   return gulp.src(paths.watchFor.tex)
     .pipe(exec('latexmk <%= file.path %> -r <%= options.myConf %>', options))
     .pipe(exec.reporter(reportOptions))
+}
+
+// Freshen the files, keep .tex files
+export function latexmkClean() {
+  var options = {
+    continueOnError: false, // default = false, true means don't emit error event 
+    pipeStdout: false, // default = false, true means stdout is written to file.contents 
+    myConf: paths.watchFor.latexmkConf // content passed to gutil.template()
+  };
+  var reportOptions = {
+    err: true, // default = true, false means don't write err 
+    stderr: true, // default = true, false means don't write stderr 
+    stdout: true // default = true, false means don't write stdout 
+  }
+
+  return gulp.src(paths.watchFor.tex)
     .pipe(exec('latexmk -c <%= file.path %> -r <%= options.myConf %>', options))
     .pipe(exec.reporter(reportOptions))
 }
 
-export default gulp.series(tex);
+
+// Deletes Every Output
+export function clobber() {
+  return del([
+    paths.watchFor.tex,
+    paths.outputTo.root
+    ])
+}
+
+// Produces pdfs the latexmk way
+gulp.task('latexmk-pdf', gulp.series(tex, glatexmk));
+
+// Produces pdfs the latexmk way
+gulp.task('latexmk-pdfc', gulp.series(tex, glatexmk, latexmkClean));
+
+export default gulp.series('latexmk-pdf');
