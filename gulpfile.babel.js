@@ -7,7 +7,7 @@ import gpandoc from 'gulp-pandoc'; // The one which works best for non binary fi
 import gap from 'gulp-append-prepend';
 import insert from 'gulp-insert';
 import rename from 'gulp-rename';
-import { exec } from 'child_process';
+import exec from 'gulp-exec';
 
 const paths = {
   contentFrom: {
@@ -39,6 +39,7 @@ const paths = {
     filters: 'src/filters/**/*.py',
     refs: 'src/**/*.bib',
     tex: 'src/tex/**/*.tex',
+    latexmkConf: 'src/conf/.latexmkrc',
     styles: 'src/assets/styles/**/*.scss',
     js: 'src/assets/js/**/*.js',
     images: 'src/img/**/*.{jpg,jpeg,png}'
@@ -96,5 +97,25 @@ export function tex() {
     .pipe(gpandoc(pandocOpt.tex))
     .pipe(gulp.dest(paths.outputTo.tex))
 };
+
+export function glatexmk() {
+  var options = {
+    continueOnError: false, // default = false, true means don't emit error event 
+    pipeStdout: false, // default = false, true means stdout is written to file.contents 
+    outDir: paths.outputTo.pdf, // content passed to gutil.template()
+    myConf: paths.watchFor.latexmkConf
+  };
+  var reportOptions = {
+    err: true, // default = true, false means don't write err 
+    stderr: true, // default = true, false means don't write stderr 
+    stdout: true // default = true, false means don't write stdout 
+  }
+
+  return gulp.src(paths.watchFor.tex)
+    .pipe(exec('latexmk <%= file.path %> -r <%= options.myConf %>', options))
+    .pipe(exec.reporter(reportOptions))
+    .pipe(exec('latexmk -c <%= file.path %> -r <%= options.myConf %>', options))
+    .pipe(exec.reporter(reportOptions))
+}
 
 export default gulp.series(tex);

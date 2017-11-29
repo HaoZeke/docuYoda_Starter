@@ -242,3 +242,6 @@ sandbox
 test/out-fixtures/*
 test/watch-*.txt
 gulp.1
+
+# Intermediary TeX
+src/tex/
