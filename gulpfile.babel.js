@@ -48,6 +48,7 @@ const paths = {
     filters: 'src/filters/**/*.py',
     refs: 'src/**/*.bib',
     tex: 'src/tex/**/*.tex',
+    templates: 'src/templates/*',
     latexmkConf: 'src/conf/.latexmkrc',
     styles: 'src/assets/styles/**/*.scss',
     js: 'src/assets/js/**/*.js',
@@ -176,6 +177,7 @@ export function watch() {
     paths.watchFor.conf,
     paths.watchFor.latexmkConf,
     paths.watchFor.images.pdf,
+    paths.watchFor.templates,
     paths.watchFor.filters
     ],
     gulp.series(tex));
