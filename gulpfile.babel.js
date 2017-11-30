@@ -51,7 +51,10 @@ const paths = {
     latexmkConf: 'src/conf/.latexmkrc',
     styles: 'src/assets/styles/**/*.scss',
     js: 'src/assets/js/**/*.js',
-    images: 'src/img/**/*.{jpg,jpeg,png}',
+    images: {
+      src: 'src/img/**/*.{jpg,jpeg,png}',
+      pdf: 'sap/pdf/**/*.{jpg,jpeg,png}'
+    },
     clean: 'sap/pdf/*'
   }
 }
@@ -153,7 +156,7 @@ export function clobber() {
 }
 
 export function images() {
-  return gulp.src(paths.watchFor.images)
+  return gulp.src(paths.watchFor.images.src)
     .pipe(newer(paths.outputTo.images.pdf))  // pass through newer images only
     .pipe(imagemin({
       interlaced: true,
@@ -166,14 +169,16 @@ export function images() {
 
 
 export function watch() {
+  watcher(paths.watchFor.images.src, gulp.series(images));
+  watcher(paths.watchFor.tex, gulp.series(glatexmk));
   watcher([
     paths.watchFor.md,
     paths.watchFor.conf,
     paths.watchFor.latexmkConf,
-    paths.watchFor.images,
+    paths.watchFor.images.pdf,
     paths.watchFor.filters
     ],
-    gulp.series('latexmk-pdf'));
+    gulp.series(tex));
 };
 
 // Produces pdfs the latexmk way
