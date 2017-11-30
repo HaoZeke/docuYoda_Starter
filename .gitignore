@@ -220,9 +220,6 @@ TSWLatexianTemp*
 # exclude the tup folder
 .tup/
 
-# exclude the generated TeX files
-src/tex/*.tex
-
 # temp
 dist/
 docs/
