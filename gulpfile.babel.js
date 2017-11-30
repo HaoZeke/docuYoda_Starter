@@ -68,6 +68,10 @@ const pandocOpt = {
     to: 'latex',
     ext: '.tex',
     args: [
+    '--filter',
+    'pandoc-eqnos',
+    '--filter',
+    'pandoc-fignos',
     '--standalone',
     '--highlight-style',
     'zenburn',
@@ -76,10 +80,8 @@ const pandocOpt = {
     '--listings',
     '--filter',
     'pandoc-citeproc',
-    '--filter',
-    'pandoc-eqnos',
-    '--filter',
-    'pandoc-fignos'
+    '--bibliography',
+    'src/refs.bib'
     ]
   },
 
