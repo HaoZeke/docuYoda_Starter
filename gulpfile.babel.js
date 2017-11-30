@@ -30,6 +30,10 @@ const paths = {
       dest: 'sap/img/'
     }
   },
+  save: {
+    pdf: '!sap/**/*.pdf',
+    root: '!sap/pdf/'
+  },
   styles: {
     src: 'src/assets/styles/**/*.scss',
     dest: 'sap/css/'
@@ -47,7 +51,8 @@ const paths = {
     latexmkConf: 'src/conf/.latexmkrc',
     styles: 'src/assets/styles/**/*.scss',
     js: 'src/assets/js/**/*.js',
-    images: 'src/img/**/*.{jpg,jpeg,png}'
+    images: 'src/img/**/*.{jpg,jpeg,png}',
+    clean: 'sap/pdf/*'
   }
 }
 
@@ -131,20 +136,12 @@ export function glatexmk() {
 
 // Freshen the files, keep .tex files
 export function latexmkClean() {
-  var options = {
-    continueOnError: false, // default = false, true means don't emit error event 
-    pipeStdout: false, // default = false, true means stdout is written to file.contents 
-    myConf: paths.watchFor.latexmkConf // content passed to gutil.template()
-  };
-  var reportOptions = {
-    err: true, // default = true, false means don't write err 
-    stderr: true, // default = true, false means don't write stderr 
-    stdout: true // default = true, false means don't write stdout 
-  }
-
-  return gulp.src(paths.watchFor.tex)
-    .pipe(exec('latexmk -c -f -silent -r <%= options.myConf %> <%= file.path %>', options))
-    .pipe(exec.reporter(reportOptions))
+  return del([
+    paths.outputTo.images.pdf,
+    paths.watchFor.clean,
+    paths.save.pdf,
+    paths.save.root
+    ])
 }
 
 // Deletes Every Output
@@ -180,6 +177,6 @@ export function watch() {
 };
 
 // Produces pdfs the latexmk way
-gulp.task('latexmk-pdf', gulp.series('tex', 'images', 'glatexmk'));
+gulp.task('latexmk-pdf', gulp.series(tex, images, glatexmk));
 
-export default gulp.series('latexmk-pdf','latexmkClean');
+export default gulp.series('latexmk-pdf', latexmkClean);

@@ -226,7 +226,6 @@ src/tex/*.tex
 # temp
 dist/
 docs/
-sap/
 
 # node
 .DS_Store
