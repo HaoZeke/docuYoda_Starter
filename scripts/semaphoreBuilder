@@ -3,6 +3,7 @@
 sudo apt install -y aria2
 yarn
 scripts/getPandoc.sh
+cp scripts/texlive.profile $HOME/texlive.profile
 scripts/TeXLive.sh
 sudo pip install pandoc-eqnos
 sudo pip install pandoc-fignos
