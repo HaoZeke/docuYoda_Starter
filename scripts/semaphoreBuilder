@@ -1,10 +1,11 @@
 #!/usr/bin/env sh
 
-sudo apt install -y aria2
+sudo apt install -y aria2 texlive-full
 yarn
 scripts/getPandoc.sh
-cp scripts/texlive.profile $HOME/texlive.profile
-scripts/TeXLive.sh
+# Disabled the texlive script in favor of regular ubuntu installation
+#cp scripts/texlive.profile $HOME/texlive.profile
+#scripts/TeXLive.sh
 sudo pip install pandoc-eqnos
 sudo pip install pandoc-fignos
 yarn run gulp
