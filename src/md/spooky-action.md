@@ -27,9 +27,10 @@ Look it up.
 I do TeX too
 
 **Bye.**
-sd
+
 Hahaha
 
 ![Photo by Ksenia Makagonova on Unsplash](img/ksenia-makagonova-229007.jpg "Photo by Ksenia Makagonova on Unsplash")
+
 
 # References
