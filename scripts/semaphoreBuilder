@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+sudo apt install -y aria2
+yarn
+scripts/getPandoc.sh
+scripts/TeXLive.sh
+sudo pip install pandoc-eqnos
+sudo pip install pandoc-fignos
+yarn run gulp
