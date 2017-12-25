@@ -1,0 +1,16 @@
+box: haozeke/zenyoda_archlinux
+# Build definition
+build:
+    steps:
+      - script:
+          name: build targets
+          code: sudo pacman -Syu openssh --noconfirm && sudo pip install pandoc-eqnos pandoc-fignos && yarn && yarn gulp && yarn gulp latexmkClean || true
+deploy:
+  steps:
+   - add-to-known_hosts:
+       hostname: bitbucket.org
+   - add-ssh-key:
+       keyname: DEPLOY
+   - script:
+       name: Deploy compiled pdf
+       code: bash scripts/deploy.sh
