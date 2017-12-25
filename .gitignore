@@ -241,3 +241,7 @@ gulp.1
 
 # Intermediary TeX
 src/tex/
+
+# Output
+sap/
+!sap/pdf/spooky-action.pdf
