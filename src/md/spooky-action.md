@@ -13,9 +13,11 @@ It is of course much slower than the lightning fast tup.
 
 New check. This ought to update.
 
-Now this works via [prose.io](http://prose.io)
+Now this works via [prose.io](http://prose.io) which is good for images.
 
-Plus I know math. as 
+[Stackedit](https://stackedit.io) has math rendering so that's a huge plus.
+
+Plus I know math.
 
 Honest!
 
@@ -37,5 +39,5 @@ Hahaha
 
 # References
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc3NjE3NDY4NF19
+eyJoaXN0b3J5IjpbMjIyNjY4NjAyXX0=
 -->
