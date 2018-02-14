@@ -13,6 +13,8 @@ It is of course much slower than the lightning fast tup.
 
 New check. This ought to update.
 
+Now this works via [prose.io](http://prose.io)
+
 Plus I know math. as 
 
 Honest!
