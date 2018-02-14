@@ -16,6 +16,7 @@ New check. This ought to update.
 Now this works via [prose.io](http://prose.io) which is good for images.
 
 [Stackedit](https://stackedit.io) has math rendering so that's a huge plus.
+However it also adds weird cruft to the files. So.. NOT RECOMMENDED.
 
 Plus I know math.
 
@@ -38,6 +39,3 @@ Hahaha
 
 
 # References
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMjIyNjY4NjAyXX0=
--->

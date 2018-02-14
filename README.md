@@ -69,7 +69,7 @@ Simply fork the repo.
 Edit the content in `src/md/*.md`, along with references in `src/refs.bib` and also the appropriate configuration files in `src/config/` using any of the following:
 
 - Github Native Editor
-- [StackEdit](https://stackedit.io)
+- [StackEdit](https://stackedit.io) *[NOT RECOMMENED] {Adds weird cruft}*
 - [Dillinger](https://dillinger.io)
 - [Prose.io](http://prose.io) *[recommended]*
 
