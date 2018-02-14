@@ -18,6 +18,6 @@ touch .
 
 git add -A .
 git commit -m "Semaphore rebuilt the pdf at ${rev}"
-git merge upstream/pdf --allow-unrelated-histories
+git merge upstream/pdf --allow-unrelated-histories --no-edit
 #git reset upstream/pdf
 git push -q upstream HEAD:pdf 
