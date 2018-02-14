@@ -4,7 +4,7 @@
 
 ![](src/img/turtle.png "Pandoc Papers for turtles")
 
-**Check the output [here](sap/pdf/spooky-action.pdf).**
+**Check the output [here](https://github.com/HaoZeke/docuYoda_Starter/blob/pdf/spooky-action.pdf).**
 
 This is the template for docuYoda rapid protoyping for academic documents.
 The template comes with **batteries included** as it includes the dependencies for complete offline use. 
