@@ -62,27 +62,29 @@ gulp --env production
 ## Usage
 
 ### PaaS
+
 Simply fork the repo.
 
 
-Edit the content slides in `src/md/*.md`, along with references in `src/refs.bib` and also the appropriate configuration files in `src/config/` using any of the following:
+Edit the content in `src/md/*.md`, along with references in `src/refs.bib` and also the appropriate configuration files in `src/config/` using any of the following:
 
 - Github Native Editor
 - [StackEdit](https://stackedit.io)
 - [Dillinger](https://dillinger.io)
-- [Prose.io](http://prose.io)
+- [Prose.io](http://prose.io) *[recommended]*
 
 You may use any of the pandoc markdown syntax, even if the viewers above do not support the entire syntax
 
+[Prose.io](http://prose.io) is recommended because it's free and image support is basically drag and drop/ *[remember to ensure the path is `src/img/`]*
 
-You'll need to edit the [Travis CI Settings](https://travis-ci.org/) for the repo as shown below:
+You'll need to edit the [Semaphore CI Settings](https://semaphoreci.com) for the repo as shown below:
 
-![](readme/travisVar.png "Variables to be set")
+![](readme/semaSettings.png "Settings")
 
 - The first build WILL TAKE around ~20 minutes.
-- Subsequent builds will only take around ~10 minutes or less.
+- Subsequent builds will only take around ~6 minutes or less.
 - It's best to setup the CI immediately on forking the repository, then start working.
- #}
+
 
 ### Local
 
@@ -98,21 +100,6 @@ yarn gulp watch
 # Clean and produce final pdf
 yarn gulp
 ```
-
-{# For automatic reloading, get [browsersync](https://browsersync.io) and run the following in another terminal:
-
-```bash
-# Get browsersync
-yarn global add browser-sync
-# Get live reloading
-browser-sync start -s 'sap' -f 'sap'
-```
-
-The output is basically a SAP whoich may be deployed to Travis for posterity. (check the [project docs](https://zenyoda.surge.sh))
-
-Point your browser to [the application](localhost:3000).
-
-For using Travis, change the site name in Travis. (more in the docs) #}
 
 ## Acknowledgments
 This software is built on the following:
