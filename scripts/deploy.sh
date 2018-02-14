@@ -13,10 +13,10 @@ git config user.email "rohit.goswami@aol.com"
 
 git remote add upstream "git@github.com:HaoZeke/docuYoda_Starter.git"
 git fetch --all
-# git reset upstream/pdf
 
 touch .
 
 git add -A .
 git commit -m "Semaphore rebuilt the pdf at ${rev}"
-git push -q upstream HEAD:pdf --force
+git reset upstream/pdf
+git push -q upstream HEAD:pdf 
