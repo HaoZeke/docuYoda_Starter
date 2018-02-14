@@ -9,4 +9,3 @@ sudo pip install pandoc-eqnos
 sudo pip install pandoc-fignos
 yarn
 yarn run gulp
-git subtree push --prefix sap/pdf origin pdf
