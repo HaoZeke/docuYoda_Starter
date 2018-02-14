@@ -7,11 +7,9 @@ It is of course much slower than the lightning fast tup.
 
 ## Advantages
 
-Easily configured.
-
-Look I cite @lion2010.
-
-That means I am awesome.
+* Easily configured.
+* Look I cite @lion2010.
+* That means I am awesome.
 
 Plus I know math. as 
 
