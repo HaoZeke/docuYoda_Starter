@@ -1,3 +1,8 @@
+---
+typora-root-url: ./
+typora-copy-images-to: ../img
+---
+
 # Spooky Action at a Distance
 
 Some text here. I wonder if this is OK.
@@ -41,5 +46,6 @@ Hahaha
 
 ![Photo by Ksenia Makagonova on Unsplash](img/ksenia-makagonova-229007.jpg "Photo by Ksenia Makagonova on Unsplash")
 
+![ksenia-makagonova-229007](../img/ksenia-makagonova-229007.jpg)
 
 # References
