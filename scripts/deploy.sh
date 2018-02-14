@@ -19,4 +19,4 @@ touch .
 
 git add -A .
 git commit -m "Semaphore rebuilt the pdf at ${rev}"
-git push -q upstream HEAD:pdf
+git push -q upstream HEAD:pdf --force
