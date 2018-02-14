@@ -61,7 +61,7 @@ gulp --env production
 
 ## Usage
 
-{# ### PaaS
+### PaaS
 Simply fork the repo.
 
 
@@ -138,7 +138,6 @@ The site is built with:
 - [CSS Gird](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
 - [CSS Variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables)
 - [Travis CI](https://travis-ci.org)
- #}
 
 ## TO-DO
 * Add site
