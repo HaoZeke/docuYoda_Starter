@@ -24,6 +24,10 @@ Honest!
 
 $$\int_0^\infty\sin{x} = ?$$
 
+$\prec$ stands for acessibility. Basically the order relation.
+
+[Dillinger](https://dillinger.io/) has great rendering for math, but no images and it doesn't understand single dollar symbols for math.
+
 Well so what.
 
 That's sort of math as well.
