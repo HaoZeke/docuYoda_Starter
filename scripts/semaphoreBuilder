@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 sudo apt update --fix-missing
-sudo apt install -y aria2 texlive-full biber
+install-package aria2 texlive-full biber
 scripts/getPandoc.sh
 # Disabled the texlive script in favor of regular ubuntu installation
 #cp scripts/texlive.profile $HOME/texlive.profile
