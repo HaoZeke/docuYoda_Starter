@@ -5,7 +5,9 @@ set -o errexit -o nounset
 rev=$(git rev-parse --short HEAD)
 
 cd sap/pdf
-#rm -rf .git
+if [[ -d ".git" ]]; then
+  rm -rf .git
+fi
 
 git init
 git config user.name "HaoZeke"
