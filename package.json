@@ -21,6 +21,7 @@
     "gulp-pandoc": "^0.2.2",
     "gulp-pandoc-writer": "^1.0.3",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
     "gulp-watch": "^4.3.11",
     "yargs-parser": "^8.0.0"
   }

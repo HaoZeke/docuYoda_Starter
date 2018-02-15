@@ -7,6 +7,7 @@ import gpandoc from 'gulp-pandoc'; // The one which works best for non binary fi
 import gap from 'gulp-append-prepend';
 import insert from 'gulp-insert';
 import rename from 'gulp-rename';
+import replace from 'gulp-replace';
 import exec from 'gulp-exec';
 import gif from 'gulp-if';
 import del from 'del';
@@ -109,6 +110,8 @@ export function tex() {
   return gulp.src(paths.watchFor.md)
   // Check if new
     .pipe(newer(paths.outputTo.tex))
+  // Produce canonical image paths
+    .pipe(replace('../img/','img/'))
   // Handle the metadata per file (bottom to top)
     .pipe(insert.prepend('---\n'))
     .pipe(gap.prependFile([
