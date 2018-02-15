@@ -243,5 +243,5 @@ gulp.1
 src/tex/
 
 # # Output
-# sap/
+sap/
 # !sap/pdf/spooky-action.pdf
