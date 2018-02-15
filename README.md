@@ -4,7 +4,7 @@
 
 > Copyright (C) 2017  Rohit Goswami <rohit1995@mail.ru>
 
-![](src/img/turtle.png "Pandoc Papers for turtles")
+![](readme/turtle.png "Pandoc Papers for turtles")
 
 **Check the output [here](https://github.com/HaoZeke/docuYoda_Starter/blob/pdf/spooky-action.pdf).**
 
