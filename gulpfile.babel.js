@@ -11,6 +11,15 @@ import replace from 'gulp-replace';
 import exec from 'gulp-exec';
 import gif from 'gulp-if';
 import del from 'del';
+import yargs from 'yargs';
+
+// Commandline Options
+const arg = yargs
+  .alias('t','template')
+  .describe('t', 'LaTeX template for pandoc')
+  .default('texTemplate', 'classicThesis', '(Classic Thesis [Generic])')
+  .help('help')
+  .argv;
 
 // Paths for futureproof directory changes
 const paths = {
@@ -77,7 +86,7 @@ const pandocOpt = {
     '--highlight-style',
     'zenburn',
     '--template',
-    paths.contentFrom.templates + 'classicThesis.tex',
+    paths.contentFrom.templates + arg.t + '.tex',
     '--listings',
     '--filter',
     'pandoc-citeproc',
