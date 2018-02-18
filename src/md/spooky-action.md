@@ -44,6 +44,6 @@ I do TeX too
 
 Hahaha
 
-![Photo by Ksenia Makagonova on Unsplash](../img/ksenia-makagonova-229007.jpg)
+![Photo by Ksenia Makagonova on Unsplash](../img/ksenia-makagonova.jpg)
 
 # References
