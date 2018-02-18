@@ -29,7 +29,7 @@ Honest!
 
 $$\int_0^\infty\sin{x} = ?$$
 
-$\prec$ stands for acessibility. Basically the order relation.
+$\prec$ stands for accessibility. Basically the order relation.
 
 [Dillinger](https://dillinger.io/) has great rendering for math, but no images and it doesn't understand single dollar symbols for math.
 
@@ -44,8 +44,6 @@ I do TeX too
 
 Hahaha
 
-![Photo by Ksenia Makagonova on Unsplash](img/ksenia-makagonova-229007.jpg "Photo by Ksenia Makagonova on Unsplash")
-
-![ksenia-makagonova-229007](../img/ksenia-makagonova-229007.jpg)
+![Photo by Ksenia Makagonova on Unsplash](../img/ksenia-makagonova-229007.jpg)
 
 # References
