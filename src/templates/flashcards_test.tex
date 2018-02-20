@@ -1,0 +1,40 @@
+% Simulate cards.cfg
+\RequirePackage{filecontents}
+\begin{filecontents*}{cards.cfg}
+\NeedsTeXFormat{LaTeX2e}[1996/12/01]
+\ProvidesFile{cards.cfg}
+\newcommand{\cardpapermode}{portrait}
+\newcommand{\cardpaper}{letterpaper}
+\newcommand{\cardrows}{1}
+\newcommand{\cardcolumns}{1}
+\setlength{\cardheight}{2.03in}
+\setlength{\cardwidth}{3.5in}
+\setlength{\topoffset}{-0.13in}
+\setlength{\oddoffset}{0.0in}
+\setlength{\evenoffset}{0.0in}
+
+\endinput
+\end{filecontents*}
+
+
+\documentclass[cards,grid]{flashcards}
+\geometry{paperwidth=3.5in,paperheight=2in}
+\begin{document}
+
+\cardfrontstyle{headings}
+\cardfrontfoot{Functional Analysis}
+
+\begin{flashcard}[Definition]{Inner Product}
+Let $X$ be a complex linear space. An \emph{inner product} on $X$ is
+a mapping that associates to each pair of vectors $x$, $y$ a scalar,
+denoted $(x,y)$, that satisfies the following properties:
+\medskip
+\begin{description}
+\item [Additivity]            $(x+y,z) = (x,z) + (y,z)$,
+\item [Homogeneity]           $(\alpha \: x, y) = \alpha (x,y)$,
+\item [Symmetry]              $(x,y) = \overline{(y,x)}$,
+\item [Positive Definiteness] $(x,x) > 0$, when $x\neq0$.
+\end{description}
+\end{flashcard}
+
+\end{document}
