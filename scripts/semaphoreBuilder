@@ -9,4 +9,4 @@ scripts/getPandoc.sh
 sudo pip install pandoc-eqnos
 sudo pip install pandoc-fignos
 yarn
-yarn run gulp
+yarn run gulper -t projReport
