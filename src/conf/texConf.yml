@@ -1,6 +1,7 @@
 documentclass: scrbook
 classoption:
   - oneside
+  - headinclude
 header-includes:
     - \numberwithin{figure}{section}
     - \numberwithin{equation}{section}
