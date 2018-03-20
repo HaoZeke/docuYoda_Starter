@@ -149,10 +149,10 @@ sorting=nyt
                     {\mkbibordedition{#1}\addthinspace{}ed.}
                     {#1\isdot}}
 % Prints author names as small caps
-\renewcommand{\mkbibnamefirst}[1]{\textsc{#1}}
-\renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
+\renewcommand{\mkbibnamegiven}[1]{\textsc{#1}}
+\renewcommand{\mkbibnamefamily}[1]{\textsc{#1}}
 \renewcommand{\mkbibnameprefix}[1]{\textsc{#1}}
-\renewcommand{\mkbibnameaffix}[1]{\textsc{#1}}
+\renewcommand{\mkbibnamesuffix}[1]{\textsc{#1}}
 \makeatother
 $for(bibliography)$
 \addbibresource{$bibliography$}
@@ -256,6 +256,8 @@ $if(institute)$
 $endif$
 \date{$date$}
 
+% Prevent biblatex warnings
+\usepackage{csquotes}
 % Well, it's called classicThesis.tex :P
 \usepackage{subfig}
 \usepackage{authblk}
