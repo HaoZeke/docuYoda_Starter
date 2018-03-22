@@ -16,7 +16,9 @@ import yargs from 'yargs';
 // Commandline Options
 const arg = yargs
   .alias('t','template')
-  .describe('t', 'LaTeX template for pandoc')
+  .describe('t', 'LaTeX template for pandoc')  
+  .alias('c','ci')
+  .describe('c', 'Customized for the build script on ubuntu')
   .default('texTemplate', 'classicThesis', '(Classic Thesis [Generic])')
   .help('help')
   .argv;
@@ -148,7 +150,8 @@ export function glatexmk() {
   }
 
   return gulp.src(paths.watchFor.tex)
-    .pipe(exec('latexmk -silent -f -r <%= options.myConf %> <%= file.path %>', options))
+    .pipe(gif(arg.c == true, exec('itex latexmk -silent -f -r <%= options.myConf %> <%= file.path %>', options),exec('latexmk -silent -f -r <%= options.myConf %> <%= file.path %>', options) ))
+    .pipe()
     .pipe(exec.reporter(reportOptions))
 }
 
