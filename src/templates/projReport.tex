@@ -14,7 +14,10 @@ $if(linestretch)$
 \usepackage{setspace}
 \setstretch{$linestretch$}
 $endif$
-\usepackage{mathtools}
+% Insert Packages here
+\usepackage{mathtools,physics}
+\usepackage{enumitem}  
+\usepackage{sidenotes}
 \usepackage{xspace}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
@@ -141,7 +144,6 @@ uniquename=false,
 autopunct=true,
 sorting=nyt
 ]{biblatex}
-
 \makeatletter
 % Citation Fine Tuning
 \DeclareFieldFormat{edition}        % Changes spacing for the edition numbers.
@@ -344,10 +346,10 @@ $endif$
 
 \huge
 $if(department)$
-\spacedlowsmallcaps{$department$} \\
+\Large \spacedlowsmallcaps{$department$} \\
 $endif$
 $if(institute)$
-\spacedlowsmallcaps{$institute$} \\
+\huge\spacedlowsmallcaps{$institute$} \\
 $endif$
 
 \makeatletter
