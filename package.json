@@ -12,7 +12,7 @@
     "babel-register": "^6.26.0",
     "del": "^3.0.0",
     "gulp": "gulpjs/gulp.git#4.0",
-    "gulp-append-prepend": "^1.0.4",
+    "gulp-append-prepend": "1.0.4",
     "gulp-exec": "^3.0.1",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^4.0.0",
